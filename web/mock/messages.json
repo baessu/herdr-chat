@@ -1,0 +1,116 @@
+{
+ "t8p": [
+  {
+   "id": "p1",
+   "role": "user",
+   "text": "BRIEF.md 읽고 화면 방향을 세 가지로 정리해 줘.",
+   "ts_ms": 1794655000000
+  },
+  {
+   "id": "p2",
+   "role": "tool",
+   "text": "",
+   "ts_ms": 1794655001000,
+   "tool": {
+    "name": "Read",
+    "summary": "~/Projects/website/BRIEF.md"
+   }
+  },
+  {
+   "id": "p3",
+   "role": "tool",
+   "text": "BRIEF.md\nREADME.md\nsrc/",
+   "ts_ms": 1794655002000,
+   "tool": {
+    "name": "Bash",
+    "summary": "ls ~/Projects/website"
+   }
+  },
+  {
+   "id": "p4",
+   "role": "assistant",
+   "text": "## 방향 세 가지\n\n1. **목록 우선**: 왼쪽에 작업 목록, 오른쪽에 상세\n2. **대화 우선**: 채팅을 크게, 목록은 접기\n3. **보드형**: 상태별 칸으로 나누기\n\n자세한 비교는 `docs/compare.md` 에 적었습니다. 참고: [디자인 원칙](https://developer.apple.com/design/human-interface-guidelines/)",
+   "ts_ms": 1794655010000
+  },
+  {
+   "id": "p5",
+   "role": "user",
+   "text": "2번으로 가자. 코드 예시도 보여 줘.",
+   "ts_ms": 1794655100000
+  },
+  {
+   "id": "p6",
+   "role": "assistant",
+   "text": "좋습니다. 기본 틀은 이렇습니다.\n\n```css\n.chat { display: flex; }\n.list { width: 320px; }\n```\n\n- 목록은 접을 수 있게\n- 입력창은 아래 고정",
+   "ts_ms": 1794655110000
+  },
+  {
+   "id": "p7",
+   "role": "assistant",
+   "ts_ms": 1794655200000,
+   "text": "결과물을 만들었습니다.\n\n- 보고서: `docs/report.md`\n- 화면: /Users/me/Projects/website/out/page.html\n- 그림 chart.png 와 out/summary.pdf\n- 로그: logs/<img src=x onerror=alert(1)>.log\n- 없는 파일: out/missing.md, report.mdx\n\n```\ncat docs/report.md\n```"
+  }
+ ],
+ "t8q": [
+  {
+   "id": "q1",
+   "role": "user",
+   "text": "버튼 크기와 색 대비를 점검하고 테스트를 돌려 줘.",
+   "ts_ms": 1794656000000
+  },
+  {
+   "id": "q2",
+   "role": "assistant",
+   "text": "점검을 시작합니다. 먼저 테스트를 실행하겠습니다.",
+   "ts_ms": 1794656050000
+  },
+  {
+   "id": "q3",
+   "role": "tool",
+   "text": "",
+   "ts_ms": 1794656090000,
+   "tool": {
+    "name": "shell",
+    "summary": "npm test -- --watch=false"
+   }
+  }
+ ],
+ "macbook-pro/t37": [
+  {
+   "id": "b1",
+   "role": "user",
+   "text": "배포 전 검사 결과 확인해 줘.",
+   "ts_ms": 1794655900000
+  },
+  {
+   "id": "b2",
+   "role": "assistant",
+   "text": "CI 결과를 확인했습니다. 다음 단계로 넘어가려면 승인이 필요합니다.",
+   "ts_ms": 1794655990000
+  }
+ ],
+ "t91": [
+  {
+   "id": "x1",
+   "role": "user",
+   "text": "<img src=x onerror=alert(1)> 이 글자가 그림으로 바뀌면 안 됩니다.",
+   "ts_ms": 1794652000000
+  },
+  {
+   "id": "x2",
+   "role": "assistant",
+   "text": "링크 시험: [x](javascript:alert(1)) 그리고 [y](JAVASCRIPT:alert(1)) 그리고 [정상](https://example.com/?a=1&b=\"2\")\n\n`<script>alert(1)</script>` 인라인 코드\n\n**<b onmouseover=alert(1)>굵게</b>**\n\n```html\n<script>alert(1)</script>\n```\n\n- <svg onload=alert(1)>\n- [z](data:text/html,<script>alert(1)</script>)",
+   "ts_ms": 1794652100000
+  },
+  {
+   "id": "x3",
+   "role": "tool",
+   "text": "<img src=x onerror=alert(1)>",
+   "ts_ms": 1794652200000,
+   "tool": {
+    "name": "<b>Bash</b>",
+    "summary": "echo '<img src=x onerror=alert(1)>'"
+   }
+  }
+ ]
+}

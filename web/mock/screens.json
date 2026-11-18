@@ -1,0 +1,6 @@
+{
+  "t8q": "  npm test -- --watch=false\n\n╭──────────────────────────────────────────────────╮\n│ 이 명령을 실행해도 될까요?                       │\n│   npm test -- --watch=false                      │\n│                                                  │\n│ ❯ 1. 예                                          │\n│   2. 예, 이 세션에서는 다시 묻지 않기            │\n│   3. 아니요, 다르게 하라고 알려 주기 (esc)       │\n╰──────────────────────────────────────────────────╯",
+  "macbook-pro/t37": "Deploy guard: CI 증거 확인 완료 (PC 12/12, 모바일 12/12)\n\n다음 단계로 진행할까요? (y/n) ",
+  "t8r": "codex  ·  herdr-chat\n\n› 서버 뼈대를 작성했습니다. server.py 에 라우트 5개를 만들었습니다.\n\n▌ 다음 지시를 입력하세요",
+  "t8s": "me@Mac herdr-chat % ls\nAPI.md  PLAN.md  probe.py  web\nme@Mac herdr-chat % "
+}

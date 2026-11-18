@@ -1,0 +1,275 @@
+{
+ "machines": [
+  {
+   "id": "local",
+   "spaces": [
+    {
+     "id": "sp-me",
+     "name": "me",
+     "tabs": [
+      {
+       "id": "tb-0",
+       "name": "백업 점검",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t113"
+        }
+       ]
+      },
+      {
+       "id": "tb-1",
+       "name": "데이터 수집기",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t101"
+        }
+       ]
+      },
+      {
+       "id": "tb-2",
+       "name": "보고서",
+       "items": [
+        {
+         "kind": "doc",
+         "doc_id": "d1",
+         "title": "이번 주 보고서.md",
+         "mod": "md-viewer"
+        },
+        {
+         "kind": "doc",
+         "doc_id": "d2",
+         "title": "회의 메모.md",
+         "mod": "md-viewer"
+        }
+       ]
+      },
+      {
+       "id": "tb-3",
+       "name": "(시험3) Python 공식 csv 문서를 확인해서 읽기 함수를 정리하고 테스트까지 돌리는 작업",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t102"
+        },
+        {
+         "kind": "terminal",
+         "id": "t103"
+        }
+       ]
+      },
+      {
+       "id": "tb-4",
+       "name": "설정 동기화",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t108"
+        },
+        {
+         "kind": "terminal",
+         "id": "t109"
+        },
+        {
+         "kind": "mod",
+         "mod": "calendar",
+         "title": "캘린더 패널"
+        }
+       ]
+      },
+      {
+       "id": "tb-5",
+       "name": "주간 정리",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t107"
+        }
+       ]
+      },
+      {
+       "id": "tb-6",
+       "name": "글 맞춤법 검사",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t110"
+        },
+        {
+         "kind": "terminal",
+         "id": "t111"
+        },
+        {
+         "kind": "terminal",
+         "id": "t112"
+        }
+       ]
+      },
+      {
+       "id": "tb-7",
+       "name": "쇼핑몰 앱 리뷰",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t104"
+        },
+        {
+         "kind": "terminal",
+         "id": "t105"
+        },
+        {
+         "kind": "terminal",
+         "id": "t106"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sp-web",
+     "name": "웹사이트 리뉴얼",
+     "tabs": [
+      {
+       "id": "tb-a",
+       "name": "접근성 점검",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t8q"
+        }
+       ]
+      },
+      {
+       "id": "tb-b",
+       "name": "UX·UI 설계",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t8p"
+        },
+        {
+         "kind": "doc",
+         "doc_id": "d404",
+         "title": "지워진 문서.md",
+         "mod": "md-viewer"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sp-shop",
+     "name": "쇼핑몰 앱",
+     "tabs": [
+      {
+       "id": "tb-c",
+       "name": "배포 점검",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t999"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sp-hc",
+     "name": "herdr-chat",
+     "tabs": [
+      {
+       "id": "tb-d",
+       "name": "서버",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t8r"
+        }
+       ]
+      },
+      {
+       "id": "tb-e",
+       "name": "셸",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t8s"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sp-blog",
+     "name": "블로그 콘텐츠",
+     "tabs": [
+      {
+       "id": "tb-f",
+       "name": "글 맞춤법 검사",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "t90"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "macbook-pro",
+   "spaces": [
+    {
+     "id": "sp-mb-shop",
+     "name": "쇼핑몰 앱",
+     "tabs": [
+      {
+       "id": "tb-mb1",
+       "name": "배포 점검",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "macbook-pro/t37"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sp-mb-memo",
+     "name": "개인 메모",
+     "tabs": [
+      {
+       "id": "tb-mb2",
+       "name": "메모",
+       "items": [
+        {
+         "kind": "terminal",
+         "id": "macbook-pro/t40"
+        },
+        {
+         "kind": "terminal",
+         "id": "macbook-pro/t41"
+        }
+       ]
+      },
+      {
+       "id": "tb-mb3",
+       "name": "문서",
+       "items": [
+        {
+         "kind": "doc",
+         "doc_id": "d2",
+         "title": "회의 메모.md",
+         "mod": "md-viewer"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

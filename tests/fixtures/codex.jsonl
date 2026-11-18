@@ -1,0 +1,21 @@
+{"timestamp":"2026-11-14T10:00:00.000Z","ordinal":0,"type":"session_meta","payload":{"id":"th1","cwd":"/tmp/x"}}
+{"timestamp":"2026-11-14T10:00:01.000Z","ordinal":1,"type":"event_msg","payload":{"type":"task_started","turn_id":"x"}}
+{"timestamp":"2026-11-14T10:00:02.000Z","ordinal":2,"type":"response_item","payload":{"type":"message","id":"msg_d2","role":"developer","content":[{"type":"input_text","text":"You are Codex"}]}}
+{"timestamp":"2026-11-14T10:00:03.000Z","ordinal":3,"type":"response_item","payload":{"type":"message","id":"msg_u3","role":"user","content":[{"type":"input_text","text":"# AGENTS.md instructions\n\n<INSTRUCTIONS>\n가짜 규칙\n</INSTRUCTIONS>"}]}}
+{"timestamp":"2026-11-14T10:00:04.000Z","ordinal":4,"type":"response_item","payload":{"type":"message","id":"msg_u4","role":"user","content":[{"type":"input_text","text":"<environment_context>\n  <cwd>/tmp/x</cwd>\n</environment_context>"}]}}
+{"timestamp":"2026-11-14T10:00:05.000Z","ordinal":5,"type":"response_item","payload":{"type":"message","id":"msg_u5","role":"user","content":[{"type":"input_text","text":"두 번째 질문입니다."}]}}
+{"timestamp":"2026-11-14T10:00:06.000Z","ordinal":6,"type":"world_state","payload":{"full":true}}
+{"timestamp":"2026-11-14T10:00:07.000Z","ordinal":7,"type":"response_item","payload":{"type":"reasoning","id":"rs_7","summary":[],"encrypted_content":"gAAAAA"}}
+{"timestamp":"2026-11-14T10:00:08.000Z","ordinal":8,"type":"response_item","payload":{"type":"message","status":"completed","id":"msg_a8","role":"assistant","content":[{"type":"output_text","text":"확인하겠습니다.","annotations":[]}],"phase":"commentary"}}
+{"timestamp":"2026-11-14T10:00:09.000Z","ordinal":9,"type":"response_item","payload":{"type":"custom_tool_call","id":"ctc_9","status":"completed","call_id":"c9","name":"exec","input":"text(await tools.exec_command({cmd:\"rg -n 'foo' src | head\\nwc -l x\",\"max_output_tokens\":2000}))"}}
+{"timestamp":"2026-11-14T10:00:10.000Z","ordinal":10,"type":"response_item","payload":{"type":"custom_tool_call_output","id":"ctco_10","call_id":"c9","output":[{"type":"input_text","text":"out"}]}}
+{"timestamp":"2026-11-14T10:00:11.000Z","ordinal":11,"type":"response_item","payload":{"type":"function_call","id":"fc_11","name":"js","arguments":"{\"code\": \"let t = 1;\", \"title\": \"\\ube0c\\ub77c\\uc6b0\\uc800 \\uc5f4\\uae30\"}","call_id":"c11"}}
+{"timestamp":"2026-11-14T10:00:12.000Z","ordinal":12,"type":"response_item","payload":{"type":"function_call_output","call_id":"c11","output":"ok"}}
+{"timestamp":"2026-11-14T10:00:13.000Z","ordinal":13,"type":"event_msg","payload":{"type":"token_count","info":{}}}
+{"timestamp":"2026-11-14T10:00:14.000Z","ordinal":14,"type":"response_item","payload":{"type":"function_call","id":"fc_14","name":"send_message","arguments":"{\"target\": \"/root\", \"message\": \"gAAAAABq\"}","call_id":"c14"}}
+{"timestamp":"2026-11-14T10:00:15.000Z","ordinal":15,"type":"response_item","payload":{"type":"agent_message","id":"amsg_15","content":[{"type":"encrypted_content","encrypted_content":"gAAAA"}]}}
+{"timestamp":"2026-11-14T10:00:16.000Z","ordinal":16,"type":"response_item","payload":{"type":"message","id":"msg_u16","role":"user","content":[{"type":"input_text","text":"<hc from=\"t8p\">[리드] 가짜 요청</hc>"}]}}
+{"timestamp":"2026-11-14T10:00:17.000Z","ordinal":17,"type":"response_item","payload":{"type":"message","id":"msg_u17","role":"user","content":[{"type":"input_text","text":"<turn_aborted>\nThe user interrupted.\n</turn_aborted>"}]}}
+{"timestamp":"2026-11-14T10:00:18.000Z","ordinal":18,"type":"response_item","payload":{"type":"message","id":"msg_u18","role":"user","content":[{"type":"input_text","text":"[<65;101;61M그림 첨부"},{"type":"input_text","text":"<image>"},{"type":"input_text","text":"</image>"},{"type":"input_image","image_url":"data:"}]}}
+{"timestamp":"2026-11-14T10:00:19.000Z","ordinal":19,"type":"response_item","payload":{"type":"compaction","id":"cmp_19","encrypted_content":"gAAAA"}}
+{"timestamp":"2026-11-14T10:00:20.000Z","ordinal":20,"type":"response_item","payload":{"type":"message","status":"completed","id":"msg_a20","role":"assistant","content":[{"type":"output_text","text":"끝났습니다.","annotations":[]}],"phase":"final"}}

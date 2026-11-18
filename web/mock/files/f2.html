@@ -1,0 +1,9 @@
+<!DOCTYPE html><meta charset="utf-8"><body style="font:16px sans-serif;padding:16px">
+<h2>가짜 HTML 결과물</h2><p id="r">검사 중…</p>
+<script>
+let r = [];
+try { localStorage.getItem('hc_token'); r.push('저장소 접근됨(위험)'); } catch (e) { r.push('저장소 차단됨'); }
+try { parent.document.title; r.push('부모 접근됨(위험)'); } catch (e) { r.push('부모 차단됨'); }
+try { document.cookie; r.push(document.cookie ? '쿠키 보임(위험)' : '쿠키 없음'); } catch (e) { r.push('쿠키 차단됨'); }
+document.getElementById('r').textContent = r.join(' · ');
+</script></body>

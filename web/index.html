@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="herdr">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="referrer" content="no-referrer">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="style.css">
+<title>herdr 채팅</title>
+</head>
+<body>
+<section id="login" class="login" hidden>
+  <form id="login-form" class="login-card">
+    <h1>herdr 채팅</h1>
+    <p>Mac 의 <code>~/.config/herdr-chat/token</code> 파일 내용을 붙여 넣어 주세요. 이 기기에 기억해서 다음부터는 묻지 않습니다.</p>
+    <label for="token-input">접속 토큰</label>
+    <input id="token-input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+    <p id="login-error" class="error" role="alert"></p>
+    <button type="submit" class="btn primary">접속</button>
+  </form>
+</section>
+
+<dialog id="create-dlg" class="create-dlg">
+  <form id="create-form" method="dialog">
+    <h2 id="create-title">새로 만들기</h2>
+    <p id="create-where" class="create-where"></p>
+    <label id="create-name-row">이름 <input id="create-name" maxlength="60" autocomplete="off"></label>
+    <label id="create-folder-row">폴더 <input id="create-folder" placeholder="~ (홈 폴더)" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <label>띄울 것
+      <select id="create-program">
+        <option value="claude">Claude Code</option>
+        <option value="codex">Codex</option>
+        <option value="shell">셸(앱에서는 보기 전용)</option>
+      </select>
+    </label>
+    <p id="create-error" class="error" role="alert"></p>
+    <div class="dlg-actions">
+      <button class="btn" type="submit" value="cancel" formnovalidate>취소</button>
+      <button id="create-ok" class="btn primary" type="submit" value="ok">만들기</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="app">
+  <aside class="list-pane">
+    <header class="pane-head">
+      <h1>에이전트</h1>
+      <span id="conn" class="conn" aria-live="polite"></span>
+      <a id="chrome-btn" class="btn push-btn chrome-btn" href="#chrome" title="평소 쓰는 Chrome 의 탭 보기" aria-label="Chrome 탭 보기">🌐</a>
+      <button id="recent-btn" class="btn recent-btn" type="button" aria-pressed="false" title="최근 48시간 안에 움직인 것만 보기" aria-label="최근 48시간만 보기">🕒</button>
+      <button id="push-btn" class="btn push-btn" type="button" aria-label="알림 설정" title="알림 설정">🔔</button>
+    </header>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="검색: 이름·폴더·id" aria-label="에이전트 검색" autocomplete="off">
+    </div>
+    <div id="list" class="list"></div>
+  </aside>
+
+  <main class="chat-pane">
+    <div id="empty" class="empty">왼쪽 목록에서 에이전트를 고르세요.</div>
+    <div id="chat" class="chat" hidden>
+      <header class="pane-head chat-head">
+        <button id="back" class="btn ghost back" type="button" aria-label="목록으로">‹ 목록</button>
+        <span id="chat-agent" class="chat-agent"></span>
+        <div class="chat-title">
+          <div class="name-row"><span id="chat-name" class="name"></span><span id="chat-state" class="state"></span></div>
+          <div id="chat-sub" class="sub"></div>
+        </div>
+        <span id="sync" class="sync" hidden>갱신 중</span>
+        <span id="chat-status" class="badge"></span>
+        <button id="mode-btn" class="btn icon-text" type="button" aria-label="권한 모드" title="권한 모드" hidden><span class="ico" aria-hidden="true">🔐</span><span id="mode-lbl" class="lbl">권한</span></button>
+        <button id="files-btn" class="btn icon-text" type="button" aria-pressed="false" aria-label="결과물"><span class="ico" aria-hidden="true">📁</span><span class="lbl">결과물</span><span id="files-count" class="count" hidden></span></button>
+        <button id="screen-toggle" class="btn icon-text" type="button" aria-pressed="false" aria-label="화면 보기"><span class="ico" aria-hidden="true">🖥️</span><span class="lbl">화면 보기</span></button>
+      </header>
+
+      <section id="blocked" class="wait-panel" hidden>
+        <div class="blocked-head"><strong>답을 기다리는 중</strong><span>아래 화면을 보고 골라 주세요.</span></div>
+        <div id="prompt-card" class="prompt-card" hidden></div>
+        <pre id="blocked-screen" class="term"></pre>
+        <div id="quick" class="quick">
+          <button class="btn key" type="button" data-key="1">1</button>
+          <button class="btn key" type="button" data-key="2">2</button>
+          <button class="btn key" type="button" data-key="3">3</button>
+          <button class="btn key" type="button" data-key="enter">Enter</button>
+          <button class="btn key" type="button" data-key="esc">Esc</button>
+          <button class="btn key" type="button" data-key="y">y</button>
+          <button class="btn key" type="button" data-key="n">n</button>
+          <button class="btn key danger" type="button" data-action="interrupt">중지</button>
+        </div>
+      </section>
+
+      <section id="screen-pane" class="screen-pane" hidden>
+        <div class="screen-bar"><span>터미널 화면 (최근 60줄)</span><button id="screen-refresh" class="btn" type="button">새로고침</button></div>
+        <pre id="screen-text" class="term"></pre>
+      </section>
+
+      <section id="files-pane" class="files-pane" hidden>
+        <div id="files-list"></div>
+      </section>
+
+      <div id="messages" class="messages">
+        <div id="older" class="older"></div>
+        <div id="msg-list"></div>
+        <div class="jump-wrap"><button id="jump" class="jump" type="button" aria-label="맨 아래로" hidden>↓<span id="jump-count" class="jump-count" hidden></span></button></div>
+      </div>
+
+      <form id="composer" class="composer">
+        <div id="chips" class="chips" hidden></div>
+        <button id="suggest" class="suggest" type="button" hidden></button>
+        <div class="composer-row">
+          <button id="attach-btn" class="btn attach" type="button" aria-label="파일 첨부" title="파일 첨부">📎</button>
+          <input id="attach-input" type="file" multiple hidden>
+          <textarea id="input" rows="1" placeholder="메시지 (Enter=줄바꿈)" aria-label="보낼 메시지"></textarea>
+          <button id="send" class="btn primary" type="submit">보내기</button>
+        </div>
+      </form>
+      <p id="readonly-note" class="readonly-note" hidden></p>
+    </div>
+
+    <div id="doc" class="chat" hidden>
+      <header class="pane-head chat-head">
+        <button id="doc-back" class="btn ghost back" type="button" aria-label="목록으로">‹ 목록</button>
+        <div class="chat-title">
+          <div id="doc-title" class="name"></div>
+          <div id="doc-sub" class="sub"></div>
+        </div>
+        <a id="doc-open" class="btn link-btn" target="_blank" rel="noopener" hidden>새 탭에서 열기</a>
+        <button id="doc-refresh" class="btn" type="button">새로고침</button>
+      </header>
+      <article id="doc-body" class="doc-body"></article>
+    </div>
+  </main>
+</div>
+
+<dialog id="confirm" class="confirm">
+  <form method="dialog">
+    <p id="confirm-msg"></p>
+    <div class="confirm-actions">
+      <button class="btn" value="cancel">취소</button>
+      <button id="confirm-ok" class="btn primary" value="ok">확인</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="push-dlg" class="confirm push-dlg">
+  <h2>알림</h2>
+  <p id="push-msg" class="push-msg"></p>
+  <div id="push-controls">
+    <label class="check"><input id="push-blocked" type="checkbox" checked> 답을 기다릴 때 알림</label>
+    <label class="check"><input id="push-done" type="checkbox"> 작업이 끝났을 때 알림</label>
+  </div>
+  <div class="confirm-actions">
+    <button id="push-off" class="btn" type="button">끄기</button>
+    <button id="push-on" class="btn primary" type="button">알림 켜기</button>
+    <button id="push-close" class="btn" type="button">닫기</button>
+  </div>
+</dialog>
+<dialog id="mode-dlg" class="confirm mode-dlg">
+  <h2>권한 모드</h2>
+  <p id="mode-note" class="push-msg"></p>
+  <div id="mode-list" class="mode-list"></div>
+  <div class="confirm-actions"><button id="mode-close" class="btn" type="button">닫기</button></div>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="debug" class="debug" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

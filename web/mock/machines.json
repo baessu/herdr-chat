@@ -1,0 +1,14 @@
+{
+ "machines": [
+  {
+   "id": "local",
+   "label": "iMac",
+   "state": "connected"
+  },
+  {
+   "id": "macbook-pro",
+   "label": "MacBook",
+   "state": "connected"
+  }
+ ]
+}

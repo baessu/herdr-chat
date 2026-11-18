@@ -1,0 +1,58 @@
+{
+ "t8p": [
+  {
+   "file_id": "f1.md",
+   "name": "report.md",
+   "rel": "docs/report.md",
+   "kind": "md",
+   "size": 220,
+   "mtime_ms": 1794656000000,
+   "source": "mentioned"
+  },
+  {
+   "file_id": "f2.html",
+   "name": "page.html",
+   "rel": "out/page.html",
+   "kind": "html",
+   "size": 640,
+   "mtime_ms": 1794656001000,
+   "source": "mentioned"
+  },
+  {
+   "file_id": "f3.png",
+   "name": "chart.png",
+   "rel": "out/chart.png",
+   "kind": "image",
+   "size": 190905,
+   "mtime_ms": 1794656002000,
+   "source": "mentioned"
+  },
+  {
+   "file_id": "f4.pdf",
+   "name": "summary.pdf",
+   "rel": "out/summary.pdf",
+   "kind": "pdf",
+   "size": 600,
+   "mtime_ms": 1794656003000,
+   "source": "recent"
+  },
+  {
+   "file_id": "f5.csv",
+   "name": "data.csv",
+   "rel": "out/data.csv",
+   "kind": "csv",
+   "size": 20000,
+   "mtime_ms": 1794656004000,
+   "source": "recent"
+  },
+  {
+   "file_id": "f6.txt",
+   "name": "<img src=x onerror=alert(1)>.log",
+   "rel": "logs/<img src=x onerror=alert(1)>.log",
+   "kind": "text",
+   "size": 90,
+   "mtime_ms": 1794656005000,
+   "source": "recent"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{"type":"user","message":{"role":"user","content":"일을 시작해 줘"},"uuid":"u1","timestamp":"2026-11-14T11:00:01.000Z","isSidechain":false}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"시작합니다."}]},"uuid":"a2","timestamp":"2026-11-14T11:00:02.000Z"}
+{"type":"queue-operation","operation":"enqueue","timestamp":"2026-11-14T11:00:03.000Z","sessionId":"s1","content":"가짜 대기 A"}
+{"type":"queue-operation","operation":"enqueue","timestamp":"2026-11-14T11:00:04.000Z","sessionId":"s1","content":"가짜 대기 B"}
+{"type":"queue-operation","operation":"dequeue","timestamp":"2026-11-14T11:00:05.000Z","sessionId":"s1"}
+{"type":"user","message":{"role":"user","content":"가짜 대기 A"},"uuid":"u6","timestamp":"2026-11-14T11:00:06.000Z","isSidechain":false}
+{"type":"queue-operation","operation":"enqueue","timestamp":"2026-11-14T11:00:07.000Z","sessionId":"s1","content":"도중에 끼워 넣은 말"}
+{"type":"queue-operation","operation":"remove","timestamp":"2026-11-14T11:00:08.000Z","sessionId":"s1","content":"도중에 끼워 넣은 말","reason":"absorbed_mid_turn"}
+{"type":"attachment","attachment":{"type":"queued_command","prompt":"도중에 끼워 넣은 말","commandMode":"prompt","humanTurn":true},"uuid":"at9","timestamp":"2026-11-14T11:00:09.000Z"}
+{"type":"queue-operation","operation":"enqueue","timestamp":"2026-11-14T11:00:10.000Z","sessionId":"s1","content":"<task-notification>\n<task-id>b1</task-id>\n<summary>가짜 완료</summary>\n</task-notification>"}
+{"type":"queue-operation","operation":"remove","timestamp":"2026-11-14T11:00:11.000Z","sessionId":"s1","content":"<task-notification>\n<task-id>b1</task-id>\n<summary>가짜 완료</summary>\n</task-notification>","reason":"absorbed_mid_turn"}
+{"type":"attachment","attachment":{"type":"queued_command","prompt":"<task-notification>\n<task-id>b1</task-id>\n<summary>가짜 완료</summary>\n</task-notification>","commandMode":"task-notification"},"uuid":"at12","timestamp":"2026-11-14T11:00:12.000Z"}
+{"type":"attachment","attachment":{"type":"queued_command","prompt":"<agent-message from=\"x\">가짜</agent-message>","commandMode":"prompt","isMeta":true},"uuid":"at13","timestamp":"2026-11-14T11:00:13.000Z"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"계속 작업 중입니다."}]},"uuid":"a14","timestamp":"2026-11-14T11:00:14.000Z"}
+{"type":"queue-operation","operation":"enqueue","timestamp":"2026-11-14T11:00:15.000Z","sessionId":"s1","content":"<hc from=\"t8p\">가짜 대기 C</hc>"}
+{"type":"queue-operation","operation":"enqueue","timestamp":"2026-11-14T11:00:16.000Z","sessionId":"s1","content":"<agent-message from=\"x\">\n가짜 보고</agent-message>"}
