@@ -1,6 +1,6 @@
 // App shell only: network first (revalidated, never a stale HTTP-cache copy), cache as offline fallback.
 // /api/ and mock/ are never cached. Bump CACHE when shipping so old shells are dropped.
-const CACHE = 'herdr-chat-v31';
+const CACHE = 'herdr-chat-v32';
 const SHELL = ['./', 'index.html', 'app.js', 'style.css', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', (e) => {

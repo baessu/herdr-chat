@@ -1922,12 +1922,16 @@ function main() {
 
   // ---------- live events ----------
 
+  let reloadAt = 0;
   function onEvent(type, d) {
     if (!d || !d.id) return;
     if (type === 'terminal') {
       const t = state.terminals.get(d.id);
       if (!t) { loadTerminals().catch(() => {}); return; }
       Object.assign(t, d);
+      // 새 탭은 잠깐 셸(zsh)로 보였다가 에이전트로 바뀐다. 상태 알림에는 종류가 없으니, 셸로 알던
+      // 터미널에서 소식이 오면 목록을 다시 받아 보기 전용이 굳지 않게 한다(2초에 한 번까지).
+      if (!t.writable && Date.now() - reloadAt > 2000) { reloadAt = Date.now(); loadTerminals().catch(() => {}); }
       scheduleList();
       if (d.id === state.current) {
         renderHeader();

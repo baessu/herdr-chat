@@ -592,6 +592,7 @@ class App:
         self._msg_cache = {}     # (id, 기록 파일, mtime, before, limit) -> 응답
         self._screens = {}       # (id, lines) -> (읽은 시각, 글자)
         self._codex_modes = {}   # id -> 이 서버가 마지막으로 바꾼 Codex 모드 id
+        self._fg_checked = {}    # id -> 앞 프로그램을 마지막으로 새로 확인한 시각(셸로 보이는 터미널만)
         self._prefetch = threading.BoundedSemaphore(2)
         self.hub.on_status = self._status_changed
         self.pusher = push.Pusher(CONFIG_DIR, on_result=lambda tid, code: audit(tid, 'push', 0, code)) if push else None
@@ -615,9 +616,23 @@ class App:
         # 셸로 보고된 터미널은 앞에서 도는 프로그램 이름으로 다시 판단한다(셸 차단은 그대로 유지).
         if t.get('agent') not in SHELLS:
             return t
+        addr = t['address']
         with self.hub.lock:
-            fg = (self.hub.facts.get(t['address']) or {}).get('foreground') or {}
+            fg = (self.hub.facts.get(addr) or {}).get('foreground') or {}
         prog = os.path.basename((fg.get('argv') or [''])[0])
+        # 실측(t14q): 새 칸의 created 사실은 감싸개 셸(sh)이 앞에 있을 때 찍히고, 뒤 이벤트는 바뀐 칸만 와서
+        # 앞 프로그램이 셸로 굳는다. 셸로 보이는 이 기기 터미널은 5초에 한 번까지 사실을 새로 받는다.
+        if prog not in FOREGROUND_AGENTS and '/' not in addr and time.time() - self._fg_checked.get(addr, 0) > 5:
+            self._fg_checked[addr] = time.time()
+            try:
+                fresh = hc_client.get(addr)
+            except HcError:
+                fresh = None
+            if isinstance(fresh, dict):
+                with self.hub.lock:
+                    self.hub.facts[addr] = {**self.hub.facts.get(addr, {}), **fresh}
+                fg = fresh.get('foreground') or {}
+                prog = os.path.basename((fg.get('argv') or [''])[0])
         agent = FOREGROUND_AGENTS.get(prog)
         return {**t, 'agent': agent} if agent else t
 
